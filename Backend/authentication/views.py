@@ -26,7 +26,6 @@ class LoginUser(APIView):
         return Response({'message': f'Logged in succesfully!'}, status=status.HTTP_200_OK)
         
         
-        
 class LogoutUser(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
