@@ -17,14 +17,10 @@ class LoginUser(APIView):
 
         if username is not None and password is not None:
             user = authenticate(username=username,password=password)
-
         if not user:
             return Response({'error' : 'Invalid credentials!'},status=status.HTTP_400_BAD_REQUEST)
-        
         token, created = Token.objects.get_or_create(user=user)
-        
         return Response({'message': f'Logged in succesfully!'}, status=status.HTTP_200_OK)
-        
         
 class LogoutUser(APIView):
     permission_classes = [IsAuthenticated]
@@ -34,7 +30,7 @@ class LogoutUser(APIView):
         authentication_token = request.META.get('HTTP_AUTHORIZATION')
         token_key = authentication_token.split(' ')[1]
         try:
-            token = Token.objects.get(token_key=token_key)
+            token = Token.objects.get(key=token_key)
             token.delete()
             logout(request=request)
             return Response({'message': 'You had been logged out!'}, status=status.HTTP_200_OK)
