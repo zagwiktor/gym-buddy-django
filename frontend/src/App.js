@@ -1,15 +1,20 @@
 
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Authentication from "./pages/Authentication"
-import "react-bootstrap/dist/react-bootstrap.min.js";
+import LoginForm from './components/LoginForm';
+import Home from "./pages/Home"
+import RegisterForm from "./components/RegisterForm"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Authentication />}/>
+          <Route path='/login' element={<LoginForm />}/>
+          <Route path='/register' element={<RegisterForm />}/>
+          <Route path='/home' element={<Home />}/>
         </Routes>
       </BrowserRouter>
       

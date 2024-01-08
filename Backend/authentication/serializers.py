@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,3 +14,13 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+    def validate(self, data):
+        if len(data["username"]) < 8 and len(data["username"]) >= 8: 
+            raise serializers.ValidationError({'erros': 'Username must contain between 8 and 15 characters.'})
+        return data
+    
+    def validate_password(self, data):
+        validate_password(data) 
+        return data
+        
+        
