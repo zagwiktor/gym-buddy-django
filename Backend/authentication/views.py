@@ -20,7 +20,7 @@ class LoginUser(APIView):
         if not user:
             return Response({'error' : 'Invalid credentials!'},status=status.HTTP_400_BAD_REQUEST)
         token, created = Token.objects.get_or_create(user=user)
-        return Response({'message': f'Logged in succesfully!'}, status=status.HTTP_200_OK)
+        return Response({'message': f'Logged in succesfully!', 'token': token.key}, status=status.HTTP_200_OK)
     
         
 class LogoutUser(APIView):
@@ -42,3 +42,5 @@ class RegisterUser(generics.CreateAPIView):
     authentication_classes = ()
     permission_classes = ()
     serializer_class = UserSerializer
+
+    
