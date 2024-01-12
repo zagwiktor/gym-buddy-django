@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
-
+import { useAuthContext } from '../context/AuthContext';
 
 const client = axios.create({
   baseURL: "http://127.0.0.1:8000"
@@ -16,7 +16,7 @@ const LoginForm = () => {
   const initialCurrentUserState = localStorage.getItem("currentUser") === "true";
   const [currentUser, setCurrentUser] = useState(initialCurrentUserState)
   const [errorMessage, setErrorMessage] = useState('')
-  const [token, setToken] = useState(localStorage.getItem("token"))
+  const { registerSucces, setRegisterSucces } = useAuthContext();
 
   const redirectToHome = () => {
     navigate('/home');
@@ -24,13 +24,13 @@ const LoginForm = () => {
 
   function submitLogin(e) {
     setErrorMessage('')
+    setRegisterSucces(null)
     e.preventDefault();
     client.post("/authentication/login/", {
       username: username,
       password: password,
     }).then(function (res) {
       setCurrentUser(true);
-      setToken(res.data['token'])
       localStorage.setItem('currentUser', 'true');
       localStorage.setItem('username', username);
       localStorage.setItem('token', res.data['token']);
@@ -41,10 +41,8 @@ const LoginForm = () => {
   }
 
   useEffect(() => {
-    if (currentUser) {
-      redirectToHome();
-    }
-  }, [currentUser]);
+    setErrorMessage(registerSucces)
+  }, []);
     
   const navigate = useNavigate();
 

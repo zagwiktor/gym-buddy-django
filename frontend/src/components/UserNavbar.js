@@ -15,7 +15,6 @@ const UserNavbar = () => {
         localStorage.clear();
         navigate("/login")
     }
-
     return(
         <Navbar bg="dark" data-bs-theme="dark">
         <Container>
@@ -30,9 +29,8 @@ const UserNavbar = () => {
                 <Button type="submit" onClick={logout}>Logout</Button>
             </Navbar.Collapse>
         </Container>
-      </Navbar>
-  );
-    
+        </Navbar>
+  );   
 }
 
 export default UserNavbar

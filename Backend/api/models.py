@@ -26,8 +26,8 @@ class TrainingPlan(models.Model):
     name = models.CharField(max_length=30, blank=False, null=False)
     informations = models.TextField(max_length=300, blank=True, null=True)
     start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(blank=True, null=True)
     exercises = models.ManyToManyField(Exercise)
+    main_plan = models.BooleanField(default=False, blank=False, null=False, unique=True)
 
     def __str__(self):
         return self.name
