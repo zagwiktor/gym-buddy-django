@@ -150,10 +150,22 @@ def training_plan_detail_view(request, pk):
     
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
+def main_plan_view(request):
+    try:
+        training_plan = TrainingPlan.objects.get(main_plan=True, author=request.user)
+    except ObjectDoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = TrainingPlanSerializer(training_plan, many=False)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def training_plan_list_view(request):
     training_plan = TrainingPlan.objects.filter(author=request.user)
     if request.method == 'GET':
         serializer = TrainingPlanSerializer(training_plan, many=True)
+        print(serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 @api_view(['PUT'])  

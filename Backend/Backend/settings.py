@@ -118,7 +118,7 @@ WSGI_APPLICATION = 'Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gymbuddydb',
+        'NAME': 'gymbuddy-db',
         'USER': 'postgres',
         'PASSWORD': 'Beniek01',
         'HOST': '127.0.0.1',

@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from '../context/AuthContext';
 
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
@@ -16,6 +17,7 @@ const RegisterForm = () => {
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [message, setErrorMessage] = useState("")
+    const { setRegisterSucces } = useAuthContext();
 
     const navigate = useNavigate()
 
@@ -28,11 +30,10 @@ const RegisterForm = () => {
             last_name: lastName,
             email: email
         }).then((res) => {
-          //Przekazanie informacji do loginform
           if (res.status == 201) {
+            setRegisterSucces(`User: ${res.data.username} has been registered`)
             navigate('/login')
           }
-          
         }).catch(error => {
           let errorMesFromResponse = ''
           if (error.response){

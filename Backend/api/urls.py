@@ -16,6 +16,7 @@ from .views import (exercise_detail_view,
                     training_plan_update_view,
                     training_plan_create_view,
                     training_plan_delete_view,
+                    main_plan_view,
 
                     raports_delete_view,
                     raports_create_view,
@@ -42,6 +43,7 @@ urlpatterns = [
     path('training-plan-update/<int:pk>', training_plan_update_view, name="training-plan-update"),
     path('training-plan-create/', training_plan_create_view, name="training-plan-create"),
     path('training-plan-delete/<int:pk>', training_plan_delete_view, name="training-plan-delete"),
+    path('main-plan/', main_plan_view, name="main-plan"),
 
     path('raports-detail/<int:pk>', raports_detail_view, name="raports-detail"),
     path('raports-list/', raports_list_view, name="raports-list"),

@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState} from "react";
 import Navbar from "../components/UserNavbar";
 import { useNavigate } from "react-router-dom";
+import TraningPlan from "../components/TraningPlan";
  
 
 const Home = () => {
@@ -9,10 +10,12 @@ const Home = () => {
     const navigate = useNavigate()
     if (currentUser) {
         return (
-            <><Navbar />
+            <>
+            <Navbar />
             <div>
-                Home page
-            </div></>
+                <TraningPlan/>
+            </div>
+            </>
         );
     } else {
         navigate("/login")
