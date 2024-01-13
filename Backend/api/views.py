@@ -172,11 +172,11 @@ def training_plan_list_view(request):
 @permission_classes([IsAuthenticated])
 def training_plan_update_view(request, pk):
     try:
-        training_plan = TrainingPlan.objects.get(pk=pk)
+        training_plan = TrainingPlan.objects.get(pk=pk, author=request.user)
     except ObjectDoesNotExist:
         return Response({'message': "Training plan with that id doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
     if request.method == 'PUT':
-        serializer = TrainingPlanSerializer(instance=training_plan, data=request.data) 
+        serializer = TrainingPlanSerializer(instance=training_plan, data=request.data, partial=True) 
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
