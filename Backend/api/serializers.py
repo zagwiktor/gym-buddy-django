@@ -25,6 +25,13 @@ class TrainingPlanSerializer(serializers.ModelSerializer):
         model = TrainingPlan
         fields = '__all__'
 
+    def save(self, **kwargs):
+        instance = super(TrainingPlanSerializer, self).save(**kwargs)
+        if instance.main_plan:
+            TrainingPlan.objects.exclude(id=instance.id).update(main_plan=False)
+        return instance
+    
+
 class RaportsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Raports

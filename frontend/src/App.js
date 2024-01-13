@@ -12,13 +12,13 @@ function App() {
   return (
     <div>
       <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/login' element={<LoginForm />}/>
-          <Route path='/register' element={<RegisterForm />}/>
-          <Route path='/home' element={<Home />}/>
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/login' element={<LoginForm />}/>
+            <Route path='/register' element={<RegisterForm />}/>
+            <Route path='/home' element={<Home />}/>
+          </Routes>
+        </BrowserRouter>
       </AuthProvider>
       
     </div>
