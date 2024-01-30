@@ -11,7 +11,6 @@ class ExerciseCategorySerializer(serializers.ModelSerializer):
         model = ExerciseCategory
         fields = '__all__'
 
-
 class ExerciseSerializer(serializers.ModelSerializer):
     category = ExerciseCategorySerializer()
     class Meta:
@@ -31,7 +30,6 @@ class TrainingPlanSerializer(serializers.ModelSerializer):
             TrainingPlan.objects.exclude(id=instance.id).update(main_plan=False)
         return instance
     
-
 class RaportsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Raports
