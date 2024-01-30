@@ -23,13 +23,13 @@ const UserNavbar = () => {
     }
 
     function getTraningPlanList() {
-        client.get("/api/training-plan-list/", 
-        {
+        client.get("/api/training-plan-list/", {
+
             headers: {
-            'Authorization': `Token ${localStorage.getItem("token")}`,
-        }}).then((res) => {
+                'Authorization': `Token ${localStorage.getItem("token")}`,
+            }
+        }).then((res) => {
             setData(res.data)
-            console.log(res.data)
             setTrainingPlans(res.data)
         }).catch(error => console.log(error))
     }

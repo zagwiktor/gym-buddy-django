@@ -16,7 +16,7 @@ const LoginForm = () => {
   const initialCurrentUserState = localStorage.getItem("currentUser") === "true";
   const [currentUser, setCurrentUser] = useState(initialCurrentUserState)
   const [errorMessage, setErrorMessage] = useState('')
-  const { registerSucces, setRegisterSucces } = useAuthContext();
+  const {registerSucces, setRegisterSucces } = useAuthContext();
 
   const redirectToHome = () => {
     navigate('/home');
@@ -31,9 +31,10 @@ const LoginForm = () => {
       password: password,
     }).then(function (res) {
       setCurrentUser(true);
-      localStorage.setItem('currentUser', 'true');
-      localStorage.setItem('username', username);
-      localStorage.setItem('token', res.data['token']);
+      localStorage.setItem('currentUser', 'true')
+      localStorage.setItem('username', username)
+      localStorage.setItem('userId', res.data.user_id)
+      localStorage.setItem('token', res.data['token'])
       redirectToHome();
     }).catch(error => {
       setErrorMessage(error.response.data.error)
