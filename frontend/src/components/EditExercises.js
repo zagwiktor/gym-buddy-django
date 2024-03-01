@@ -38,11 +38,39 @@ const EditExercises = () => {
                 'Authorization': `Token ${localStorage.getItem("token")}`,
             }
         }).then((res) => {
-            getExercises()
+            filedsClear()
         }).catch(error => console.log(error)) : setErrorMessage("You have not chosen any exercise")
 
     }
 
+    function handleExerciseUpdate() {
+        client.put(`/api/exercise-update/${choosedExercise.id}`,
+            { 
+                name: name,
+                description: description,
+                author: localStorage.getItem('userId'),
+                sets: sets,
+                repetitions: repetitions,
+                category: categoryPk
+            },
+            {
+                headers: {
+                    'Authorization': `Token ${localStorage.getItem("token")}`,
+                }
+        }).then(
+            filedsClear()
+        ).catch(error => console.log(error))
+    }
+
+    function filedsClear() {
+        getExercises()
+        setChoosedExercises('')
+        setName('')
+        setChoosedCategory('Category of exercise')
+        setDescription('')
+        setSets(5)
+        setRepetitions(5)
+    }
     useEffect(() => {
         getExercises()
         getCategories()
@@ -58,7 +86,7 @@ const EditExercises = () => {
             }).catch(error => console.log(error))
     }
 
-    function exerciseChoosed(exercise) {
+    function chosenExercise(exercise) {
         setChoosedExercises(exercise)
         setDescription(exercise.description)
         setSets(exercise.sets)
@@ -67,6 +95,7 @@ const EditExercises = () => {
         categories.forEach(element => {
             if (element.id == exercise.category) {
                 setChoosedCategory(element.name)
+                setCategoryPk(exercise.category)
             }
         });
 
@@ -76,7 +105,7 @@ const EditExercises = () => {
     return (
         <>
         <Navbar/>   
-        <Form> 
+        <Form onSubmit={handleExerciseUpdate}> 
         <h1>Choose which you want to edit.</h1>
         <Form.Group className="mb-3" controlId="formBasicTpInfo">
             <Form.Label>Exercises</Form.Label>
@@ -86,7 +115,7 @@ const EditExercises = () => {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     {exercises ? (exercises.map((exercise) => (
-                    <><Dropdown.Item key={exercise.id} onClick={() => {exerciseChoosed(exercise)
+                    <><Dropdown.Item key={exercise.id} onClick={() => {chosenExercise(exercise)
                         }}>
                         {exercise.name}
                     </Dropdown.Item><Dropdown.Divider /></>

@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { AuthProvider } from './context/AuthContext'
 import AddCategoryForm from './components/AddCategory';
 import EditExercises from './components/EditExercises';
+import EditTraningPlan from './components/EditPlan';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path='/add-exercise' element={<AddExerciseForm />}/>
             <Route path='/add-category' element={<AddCategoryForm />}/>
             <Route path='/edit-exercise' element={<EditExercises/>}/>
+            <Route path='/edit-traning-plan' element={<EditTraningPlan/>}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

@@ -14,7 +14,6 @@ const client = axios.create({
 
 const UserNavbar = () => {
     const [username, setUsername] = useState(localStorage.getItem('username')) 
-    const [data, setData] = useState('')
     const [trainingPlans, setTrainingPlans] = useState([]);
     const navigate = useNavigate()
     const logout = () => {
@@ -29,7 +28,6 @@ const UserNavbar = () => {
                 'Authorization': `Token ${localStorage.getItem("token")}`,
             }
         }).then((res) => {
-            setData(res.data)
             setTrainingPlans(res.data)
         }).catch(error => console.log(error))
     }
@@ -79,6 +77,9 @@ const UserNavbar = () => {
                     )}
                 </NavDropdown>
                 <NavDropdown title="Edit Options" id="basic-nav-dropdown">
+                        <NavDropdown.Item onClick={() => {navigate("/edit-traning-plan")}}>
+                            Edit Traning Plan
+                        </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {navigate("/edit-exercise")}}>
                             Edit Exercises
                         </NavDropdown.Item>
