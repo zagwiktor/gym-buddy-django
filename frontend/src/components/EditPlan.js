@@ -19,6 +19,7 @@ const EditTraningPlan = () => {
     const [description, setDescription] = useState('')
     const [exercises, setExercises] = useState()
     const [choosenPlan, setChosenPlan] = useState('Choose traning plan')
+    const [choosenPlanPk, setChosenPlanPk] = useState('')
     const [choosedExercises, setChoosedExercises] = useState([])
     const [trainingPlans, setTrainingPlans] = useState([])
     const [isChecked, setIsChecked] = useState(false)
@@ -45,11 +46,11 @@ const EditTraningPlan = () => {
     }
 
     function handleAddTraningPlan() {
-        client.post('api/training-plan-create/', {
+        client.put(`/api/training-plan-update/${choosenPlanPk}`, {
             author: localStorage.getItem('userId'),
             name: name,
             informations: description,
-            exercises_ids: 5,
+            exercises_ids: makePostExercisesArray(),
             main_plan: isChecked
             },
             {
@@ -71,6 +72,7 @@ const EditTraningPlan = () => {
     }, []);
  
     function chosenPlanAction(plan) {
+        setChosenPlanPk(plan.id)
         setChosenPlan(`${plan.name}`)
         setName(plan.name)
         setDescription(plan.informations)
@@ -80,6 +82,28 @@ const EditTraningPlan = () => {
         console.log(choosedExercises)
     }
         
+    function deleteFromSelectedExercises(exercise) {
+        let exercises = [...choosedExercises];
+        exercises = exercises.filter(exerciseList => exerciseList != exercise)
+        setChoosedExercises(exercises) 
+    }
+
+    function selectExercise(exercise) {
+        const exercises = [...choosedExercises];
+        if (!exercises.includes(exercise)) {
+            exercises.push(exercise)
+        } 
+        setChoosedExercises(exercises) 
+    }
+
+    function makePostExercisesArray() {
+        let tempArray = []
+        tempArray = exercises
+        .filter(exercise => choosedExercises.includes(exercise.name))
+        .map(exercise => exercise.id)
+        return tempArray
+    }
+
     return (
         <>
         <Navbar />
@@ -96,7 +120,7 @@ const EditTraningPlan = () => {
                             {`${plan.name} ★`}
                         </Dropdown.Item>
                     ):
-                        <Dropdown.Item key={plan.id}>
+                        <Dropdown.Item key={plan.id} onClick={() => chosenPlanAction(plan)}>
                             {plan.name}
                         </Dropdown.Item>
                     )}
@@ -117,17 +141,22 @@ const EditTraningPlan = () => {
                 <Dropdown data-bs-theme="dark">
                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                 {choosedExercises.map((exercise, index) => (
-                    <div key={index}>
-                    {exercise}
-                    <Button variant="primary">
-                        ☓
-                    </Button>
+                <div key={index}>
+                {exercise}
+                <Button 
+                    variant="primary" 
+                    onClick={() => deleteFromSelectedExercises(exercise)}
+                    onMouseEnter={(e) => e.stopPropagation()}
+                >
+                    ☓
+                </Button>
                 </div>
-                ))}  
+                ))}
+               
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     {exercises ? (exercises.map((exercise) => (
-                    <><Dropdown.Item key={exercise.id}>
+                    <><Dropdown.Item key={exercise.id} onClick={() => selectExercise(exercise.name)}>
                         {exercise.name}
                     </Dropdown.Item><Dropdown.Divider /></>
                     ))) : (<Dropdown.Item>Exercises have not found</Dropdown.Item>)}
