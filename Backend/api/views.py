@@ -188,8 +188,8 @@ def training_plan_create_view(request):
     if request.method == 'POST':
         serializer = TrainingPlanSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+             serializer.save()
+             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['DELETE'])

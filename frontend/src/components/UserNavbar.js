@@ -63,7 +63,10 @@ const UserNavbar = () => {
         <Container>
           <Navbar.Brand href="#home">GymBuddy</Navbar.Brand>
             <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link onClick={() => {navigate("/home")}}>Home</Nav.Link>
+                <Nav.Link onClick={() => {navigate("/add-plan")}}>Add Traning Plan</Nav.Link>
+                <Nav.Link onClick={() => {navigate("/add-exercise")}}>Add Exercise</Nav.Link>
+                <Nav.Link onClick={() => {navigate("/add-category")}}>Add Exercise Category</Nav.Link>
                 <NavDropdown title="Your Training Plans" id="basic-nav-dropdown">
                     {trainingPlans.map(plan => plan.main_plan ? (
                         <NavDropdown.Item key={plan.id} onClick={() => handlePlanClick(plan.id)}>
@@ -75,6 +78,12 @@ const UserNavbar = () => {
                         </NavDropdown.Item>
                     )}
                 </NavDropdown>
+                <NavDropdown title="Edit Options" id="basic-nav-dropdown">
+                        <NavDropdown.Item onClick={() => {navigate("/edit-exercise")}}>
+                            Edit Exercises
+                        </NavDropdown.Item>
+                </NavDropdown>
+                
             </Nav>
             <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text style={{ paddingRight: '15px' }}>

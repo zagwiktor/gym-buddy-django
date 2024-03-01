@@ -5,8 +5,11 @@ import LoginForm from './components/LoginForm';
 import Home from "./pages/Home"
 import RegisterForm from "./components/RegisterForm"
 import AddPlanForm from './components/AddPlanForm';
+import AddExerciseForm from './components/AddExerciseForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AuthProvider } from './context/AuthContext'
+import AddCategoryForm from './components/AddCategory';
+import EditExercises from './components/EditExercises';
 
 
 function App() {
@@ -19,6 +22,9 @@ function App() {
             <Route path='/register' element={<RegisterForm />}/>
             <Route path='/home' element={<Home />}/>
             <Route path='/add-plan' element={<AddPlanForm />}/>
+            <Route path='/add-exercise' element={<AddExerciseForm />}/>
+            <Route path='/add-category' element={<AddCategoryForm />}/>
+            <Route path='/edit-exercise' element={<EditExercises/>}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>

@@ -23,7 +23,7 @@ class Exercise(models.Model):
 
 class TrainingPlan(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30, blank=False, null=False)
+    name = models.CharField(max_length=30, blank=False, null=False, unique=True)
     informations = models.TextField(max_length=300, blank=True, null=True)
     start_date = models.DateTimeField(auto_now_add=True)
     exercises = models.ManyToManyField(Exercise)

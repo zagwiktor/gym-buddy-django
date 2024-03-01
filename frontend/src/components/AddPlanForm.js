@@ -39,10 +39,10 @@ const AddPlanForm = () => {
 
     function handleAddTraningPlan() {
         client.post('api/training-plan-create/', {
-            author: userId,
+            author: localStorage.getItem('userId'),
             name: name,
             informations: description,
-            exercises: makePostExercisesArray(),
+            exercises_ids: makePostExercisesArray(),
             main_plan: isChecked
             },
             {
@@ -84,11 +84,9 @@ const AddPlanForm = () => {
 
     function makePostExercisesArray() {
         let tempArray = []
-        tempArray = exercises.map((exercise) => {
-            if (postExercises.includes(exercise.name)) {
-                return exercise
-            }
-        })
+        tempArray = exercises
+        .filter(exercise => postExercises.includes(exercise.name))
+        .map(exercise => exercise.id)
         return tempArray
     }
 
@@ -103,7 +101,7 @@ const AddPlanForm = () => {
               <Form.Group className="mb-3" controlId="formBasicTpName">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
-                  type="username"
+                  type="text"
                   placeholder="Type in name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
