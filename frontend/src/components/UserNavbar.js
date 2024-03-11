@@ -83,6 +83,9 @@ const UserNavbar = () => {
                         <NavDropdown.Item onClick={() => {navigate("/edit-exercise")}}>
                             Edit Exercises
                         </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {navigate("/edit-categories")}}>
+                            Edit Categories
+                        </NavDropdown.Item>
                 </NavDropdown>
                 
             </Nav>

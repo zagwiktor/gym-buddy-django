@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import axios from "axios";
 import Dropdown from 'react-bootstrap/Dropdown';
 import InputGroup from 'react-bootstrap/InputGroup';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+
 
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
@@ -45,7 +45,7 @@ const EditTraningPlan = () => {
             }).catch(error => console.log(error))
     }
 
-    function handleAddTraningPlan() {
+    function handleUpdateTraningPlan() {
         client.put(`/api/training-plan-update/${choosenPlanPk}`, {
             author: localStorage.getItem('userId'),
             name: name,
@@ -59,6 +59,7 @@ const EditTraningPlan = () => {
                 }
             }
         ).then(res => {
+            filedsClear()
             console.log(res.data)
         }).catch(error => {
             console.log(error)
@@ -79,7 +80,6 @@ const EditTraningPlan = () => {
         setIsChecked(plan.main_plan)
         const planExercises = plan.exercises.map(exercise => exercise.name)
         setChoosedExercises(planExercises)
-        console.log(choosedExercises)
     }
         
     function deleteFromSelectedExercises(exercise) {
@@ -104,12 +104,33 @@ const EditTraningPlan = () => {
         return tempArray
     }
 
+    function deletePlan() {
+        choosenPlan ?
+        client.delete(`/api/training-plan-delete/${choosenPlanPk}`, {
+            headers: {
+                'Authorization': `Token ${localStorage.getItem("token")}`,
+            }
+        }).then((res) => {
+            filedsClear()
+        }).catch(error => console.log(error)) : setErrorMessage("You have not chosen any traning plan")
+
+    }
+
+    function filedsClear() {
+        setChosenPlan('Choose traning plan')
+        getExercises()
+        getTraningPlanList() 
+        setChoosedExercises([])
+        setName('')
+        setDescription('')
+    }
+
     return (
         <>
         <Navbar />
         <div>
             <h1>Choose traning plan which you want to edit.</h1>
-            <Form onSubmit={handleAddTraningPlan}>
+            <Form onSubmit={handleUpdateTraningPlan}>
             <Dropdown data-bs-theme="dark">
                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                     {choosenPlan}
@@ -185,7 +206,10 @@ const EditTraningPlan = () => {
               </Form.Text>
               
               <Button variant="primary" type="submit">
-                Add
+                Edit
+              </Button>
+              <Button variant="primary" onClick={() => deletePlan()}>
+                Delete Plan
               </Button>
             </Form>
         </div>

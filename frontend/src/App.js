@@ -11,7 +11,7 @@ import { AuthProvider } from './context/AuthContext'
 import AddCategoryForm from './components/AddCategory';
 import EditExercises from './components/EditExercises';
 import EditTraningPlan from './components/EditPlan';
-
+import EditCategory from './components/EditCategory';
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
             <Route path='/add-category' element={<AddCategoryForm />}/>
             <Route path='/edit-exercise' element={<EditExercises/>}/>
             <Route path='/edit-traning-plan' element={<EditTraningPlan/>}/>
+            <Route path='/edit-categories' element={<EditCategory/>}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
