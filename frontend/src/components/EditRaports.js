@@ -30,19 +30,59 @@ const EditRaports = () => {
         .catch(error=>console.log(error))
     }
 
-    function chosenRaport() {
-
+    function chosenRaport(raport) {
+        setShoosedRaport(raport)
+        setCalories(raport.calories)
+        setWeight(raport.weight)
+        setChestCircuit(raport.chest_circuit)
+        setBicepsCircuit(raport.biceps_circuit)
+        setWaistCircuit(raport.waist_circuit)
+        setThighCircuit(raport.thigh_circuit)
+        setCalfCircuit(raport.calf_circuit)
     }
 
     useEffect(() => {
         getRaports() 
     },[])
 
+    function handleEditRaport() {
+        
+        client.put(`/api/raports-update/${choosedRaport.id}`, {
+            author: localStorage.getItem('userId'),
+            weight: weight,
+            chest_circuit: chestCircuit,
+            calories: calories,
+            biceps_circuit: bicepsCircuit,
+            waist_circuit: waistCircuit,
+            thigh_circuit: thighCircuit,
+            calf_circuit: calfCircuit
+        }, {
+            headers : {
+                'Authorization': `Token ${localStorage.getItem("token")}`
+            }
+        }). then(res => {console.log(res)
+            setErrorMessage("Raport has been edited")
+        }).catch(error => setErrorMessage(error.message))
+    }
+
+    function deleteRaport() {
+        client.delete(`/api/raports-delete/${choosedRaport.id}`, {
+            headers : {
+                'Authorization': `Token ${localStorage.getItem("token")}`
+            }
+        }).then(res => refreshPage())
+        .catch(error=>setErrorMessage(error.message))
+    }
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
     return (
         <>
         <Navbar/>
             <h1>Choose raport which you want to edit.</h1>
-        <Form>
+        <Form onSubmit={handleEditRaport}>
             <Form.Group className="mb-3" controlId="formBasicTpInfo">
                 <Form.Label>Raports</Form.Label>
                     <Dropdown data-bs-theme="dark">
@@ -128,7 +168,7 @@ const EditRaports = () => {
             <Button variant="primary" type="submit" >
                 Edit
             </Button>
-            <Button variant="primary">
+            <Button variant="primary" onClick={deleteRaport}>
                 Delete
             </Button>
         </Form>
