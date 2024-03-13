@@ -19,7 +19,7 @@ const LoginForm = () => {
   const {registerSucces, setRegisterSucces } = useAuthContext();
 
   const redirectToHome = () => {
-    navigate('/home');
+    navigate('/home')
   };
 
   function submitLogin(e) {

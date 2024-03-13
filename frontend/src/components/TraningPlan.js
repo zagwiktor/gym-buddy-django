@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate} from "react-router-dom";
 
 
+
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
 })
@@ -22,11 +23,18 @@ const TraningPlan = () => {
 
     useEffect(() => {
         getTraningPlan()
+        
       }, []);
 
     
     function addPlanAction() {
         navigate("/add-plan")
+    }
+
+    function addRaport() {
+        localStorage.setItem('traningPlanRaport', JSON.stringify([data.name, data.id]))
+        console.log(JSON.parse(localStorage.getItem('traningPlanRaport')))
+        navigate("/add-raport")
     }
 
     return (
@@ -48,6 +56,9 @@ const TraningPlan = () => {
                     </div><hr/>
                     <h3>Informations <br/></h3><p>{data.informations}</p><hr/>
                     <h3>Date</h3><p>{data.start_date}</p><hr/>
+                    <Button variant="primary" size="lg" onClick={() => addRaport()}>
+                        Add Raport
+                    </Button>
                 </>
             ) : (
                 <>
@@ -55,7 +66,7 @@ const TraningPlan = () => {
 
                     <Button variant="primary" size="lg" onClick={() => addPlanAction()}>
                         Add Traning Plan
-                    </Button>{' '}
+                    </Button>
                 </div>
                 
                 

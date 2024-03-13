@@ -43,6 +43,7 @@ class TrainingPlanSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
 class RaportsSerializer(serializers.ModelSerializer):
+    date = serializers.DateTimeField(format="%Y-%m-%d", read_only=True)
     class Meta:
         model = Raports
         fields = '__all__'

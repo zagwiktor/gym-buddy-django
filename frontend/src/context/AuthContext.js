@@ -6,7 +6,7 @@ export const AuthProvider = ({children}) => {
     const [registerSucces, setRegisterSucces] = useState(null)
     const contextValue = {
         registerSucces,
-        setRegisterSucces
+        setRegisterSucces,
     }
     return(<AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>)
 }

@@ -12,6 +12,9 @@ import AddCategoryForm from './components/AddCategory';
 import EditExercises from './components/EditExercises';
 import EditTraningPlan from './components/EditPlan';
 import EditCategory from './components/EditCategory';
+import AddRaport from './components/AddRaport';
+import Raports from './components/Raports';
+import EditRaports from './components/EditRaports';
 
 function App() {
   return (
@@ -25,14 +28,17 @@ function App() {
             <Route path='/add-plan' element={<AddPlanForm />}/>
             <Route path='/add-exercise' element={<AddExerciseForm />}/>
             <Route path='/add-category' element={<AddCategoryForm />}/>
-            <Route path='/edit-exercise' element={<EditExercises/>}/>
-            <Route path='/edit-traning-plan' element={<EditTraningPlan/>}/>
-            <Route path='/edit-categories' element={<EditCategory/>}/>
+            <Route path='/edit-exercise' element={<EditExercises />}/>
+            <Route path='/edit-traning-plan' element={<EditTraningPlan />}/>
+            <Route path='/edit-categories' element={<EditCategory />}/>
+            <Route path='/add-raport' element={<AddRaport />}/>
+            <Route path='/raports' element={<Raports />}/>
+            <Route path='/edit-raports' element={<EditRaports />}/>
           </Routes>
         </BrowserRouter>
       </AuthProvider>
     </div>
-  );
+  )
 }
 
 export default App;

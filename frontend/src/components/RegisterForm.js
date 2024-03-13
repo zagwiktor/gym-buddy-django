@@ -8,8 +8,7 @@ import { useAuthContext } from '../context/AuthContext';
 
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
-});
-
+})
 const RegisterForm = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -17,7 +16,7 @@ const RegisterForm = () => {
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
     const [message, setErrorMessage] = useState("")
-    const { setRegisterSucces } = useAuthContext();
+    const { setRegisterSucces } = useAuthContext()
 
     const navigate = useNavigate()
 

@@ -106,7 +106,7 @@ const EditExercises = () => {
         <>
         <Navbar/>   
         <Form onSubmit={handleExerciseUpdate}> 
-        <h1>Choose which you want to edit.</h1>
+        <h1>Choose exercise which you want to edit.</h1>
         <Form.Group className="mb-3" controlId="formBasicTpInfo">
             <Form.Label>Exercises</Form.Label>
                 <Dropdown data-bs-theme="dark">

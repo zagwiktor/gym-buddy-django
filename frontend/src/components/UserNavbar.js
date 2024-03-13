@@ -65,26 +65,37 @@ const UserNavbar = () => {
                 <Nav.Link onClick={() => {navigate("/add-plan")}}>Add Traning Plan</Nav.Link>
                 <Nav.Link onClick={() => {navigate("/add-exercise")}}>Add Exercise</Nav.Link>
                 <Nav.Link onClick={() => {navigate("/add-category")}}>Add Exercise Category</Nav.Link>
+                <Nav.Link onClick={() => {navigate("/add-raport")}}>Add Raport</Nav.Link>
+                <Nav.Link onClick={() => {navigate("/raports")}}>Your Raports</Nav.Link>
                 <NavDropdown title="Your Training Plans" id="basic-nav-dropdown">
                     {trainingPlans.map(plan => plan.main_plan ? (
                         <NavDropdown.Item key={plan.id} onClick={() => handlePlanClick(plan.id)}>
                             {`${plan.name} ★`}
+                            <hr/>
                         </NavDropdown.Item>
                     ):
                         <NavDropdown.Item key={plan.id} onClick={() => handlePlanClick(plan.id)}>
                             {plan.name}
+                            <hr/>
                         </NavDropdown.Item>
                     )}
                 </NavDropdown>
                 <NavDropdown title="Edit Options" id="basic-nav-dropdown">
                         <NavDropdown.Item onClick={() => {navigate("/edit-traning-plan")}}>
                             Edit Traning Plan
+                            <hr/>
                         </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {navigate("/edit-exercise")}}>
                             Edit Exercises
+                            <hr/>
                         </NavDropdown.Item>
                         <NavDropdown.Item onClick={() => {navigate("/edit-categories")}}>
                             Edit Categories
+                            <hr/>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {navigate("/edit-raports")}}>
+                            Edit Raports
+                            <hr/>
                         </NavDropdown.Item>
                 </NavDropdown>
                 
