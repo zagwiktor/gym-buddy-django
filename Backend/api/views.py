@@ -266,4 +266,7 @@ def raports_delete_view(request, pk):
            return Response({'message': "Raport has been deleted"}, status=status.HTTP_200_OK)
         else: 
            return Response({'message': "Delete failed"}, status=status.HTTP_400_BAD_REQUEST)
+
+    
+
        

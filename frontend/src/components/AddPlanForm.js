@@ -20,9 +20,8 @@ const AddPlanForm = () => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [exercises, setExercises] = useState()
-    const [choosedExercises, setChoosedExercises] = useState('Choose Exercises')
-    const [postExercises, setPostExercises] = useState([])
     const [isChecked, setIsChecked] = useState(false);
+    const [choosedExercises, setChoosedExercises] = useState([])
 
     const navigate = useNavigate()
 
@@ -64,29 +63,26 @@ const AddPlanForm = () => {
         }
     }, []);
 
-    function concateChooseExercises(exerciseId, exerciseName) {
-        let exercise = `${exerciseId}. "${exerciseName}"`
-        const updatedExercises = [...postExercises, exerciseName];
-        setPostExercises(updatedExercises);
-        if (choosedExercises == 'Choose Exercises') {
-            setChoosedExercises(exercise)
-        } else {
-            if(!choosedExercises.includes(exerciseName)) {
-                setErrorMessage('')
-                setChoosedExercises(choosedExercises + ', ' + exercise)
-            } else {
-                setErrorMessage('You already have added that exercise')
-                makePostExercisesArray()
-            }
-        }
-    }
-
     function makePostExercisesArray() {
         let tempArray = []
         tempArray = exercises
-        .filter(exercise => postExercises.includes(exercise.name))
+        .filter(exercise => choosedExercises.includes(exercise.name))
         .map(exercise => exercise.id)
         return tempArray
+    }
+
+    function deleteFromSelectedExercises(exercise) {
+        let exercises = [...choosedExercises];
+        exercises = exercises.filter(exerciseList => exerciseList != exercise)
+        setChoosedExercises(exercises) 
+    }
+
+    function selectExercise(exercise) {
+        const exercises = [...choosedExercises];
+        if (!exercises.includes(exercise)) {
+            exercises.push(exercise)
+        } 
+        setChoosedExercises(exercises) 
     }
 
 
@@ -111,11 +107,22 @@ const AddPlanForm = () => {
                 <Form.Label>Exercises</Form.Label>
                 <Dropdown data-bs-theme="dark">
                 <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                    {choosedExercises}
+                {choosedExercises.map((exercise, index) => (
+                <div key={index}>
+                {exercise}
+                <Button 
+                    variant="primary" 
+                    onClick={() => deleteFromSelectedExercises(exercise)}
+                    onMouseEnter={(e) => e.stopPropagation()}
+                >
+                    ☓
+                </Button>
+                </div>
+                ))}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                     {exercises ? (exercises.map((exercise) => (
-                    <><Dropdown.Item key={exercise.id} onClick={() => concateChooseExercises(exercise.id, exercise.name)}>
+                    <><Dropdown.Item key={exercise.id} onClick={() => selectExercise(exercise.name)}>
                         {exercise.name}
                     </Dropdown.Item><Dropdown.Divider /></>
                     ))) : (<Dropdown.Item>Exercises have not found</Dropdown.Item>)}

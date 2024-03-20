@@ -3,7 +3,7 @@ import Navbar from "../components/UserNavbar"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from "axios"
-import Dropdown from 'react-bootstrap/Dropdown';
+
 
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
@@ -39,10 +39,7 @@ const AddRaport = () => {
         ).catch(error => setErrorMessage(error.message))
 
     }
-    useEffect(()=>{
-
-        
-    },[])
+    
     return (
         <>
             <Navbar/>
