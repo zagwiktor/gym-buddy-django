@@ -59,14 +59,29 @@ const UserNavbar = () => {
     return (
         <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">GymBuddy</Navbar.Brand>
+          <Navbar.Brand>GymBuddy</Navbar.Brand>
             <Nav className="me-auto">
                 <Nav.Link onClick={() => {navigate("/home")}}>Home</Nav.Link>
-                <Nav.Link onClick={() => {navigate("/add-plan")}}>Add Traning Plan</Nav.Link>
-                <Nav.Link onClick={() => {navigate("/add-exercise")}}>Add Exercise</Nav.Link>
-                <Nav.Link onClick={() => {navigate("/add-category")}}>Add Exercise Category</Nav.Link>
-                <Nav.Link onClick={() => {navigate("/add-raport")}}>Add Raport</Nav.Link>
                 <Nav.Link onClick={() => {navigate("/raports")}}>Your Raports</Nav.Link>
+                <NavDropdown title="Add Options" id="basic-nav-dropdown">
+                        <NavDropdown.Item onClick={() => {navigate("/add-plan")}}>
+                            Add Traning Plan
+                            <hr/>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {navigate("/add-exercise")}}>
+                            Add Exercise
+                            <hr/>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item  onClick={() => {navigate("/add-category")}}>
+                            Add Exercise Category
+                            <hr/>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => {navigate("/add-raport")}}>
+                            Add Raport
+                            <hr/>
+                        </NavDropdown.Item>
+                        
+                </NavDropdown>
                 <NavDropdown title="Your Training Plans" id="basic-nav-dropdown">
                     {trainingPlans.map(plan => plan.main_plan ? (
                         <NavDropdown.Item key={plan.id} onClick={() => handlePlanClick(plan.id)}>

@@ -5,6 +5,7 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from '../context/AuthContext';
+import "../style/Form.css"
 
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
@@ -45,7 +46,7 @@ const RegisterForm = () => {
     }
 
     return(
-        <div>
+        <div className="container-form">
         <Form onSubmit={submitRegister}>
           <Form.Group className="mb-3" controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
@@ -104,7 +105,7 @@ const RegisterForm = () => {
              {message}
           </Form.Text>
           </div>
-          <Button variant="primary" type="submit">
+          <Button variant="secondary" type="submit">
             Submit
           </Button>
           

@@ -2,6 +2,7 @@ import axios from "axios"
 import React, { useState, useEffect } from "react"
 import Button from 'react-bootstrap/Button';
 import { useNavigate} from "react-router-dom";
+import "../style/TraningPlan.css"
 
 
 
@@ -38,7 +39,12 @@ const TraningPlan = () => {
     }
 
     return (
-        <div>
+        <div className="home-page-container">
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
+        <div className="main-plan-container">
+            
             {data ? (
                 <>
                     <h1>Training Plan <br/> {data.name}</h1><hr/>
@@ -54,9 +60,10 @@ const TraningPlan = () => {
                             </div>
                         ))}
                     </div><hr/>
+                    
                     <h3>Informations <br/></h3><p>{data.informations}</p><hr/>
                     <h3>Date</h3><p>{data.start_date}</p><hr/>
-                    <Button variant="primary" size="lg" onClick={() => addRaport()}>
+                    <Button variant="secondary" size="lg" onClick={() => addRaport()}>
                         Add Raport
                     </Button>
                 </>
@@ -64,7 +71,7 @@ const TraningPlan = () => {
                 <>
                 <div>
 
-                    <Button variant="primary" size="lg" onClick={() => addPlanAction()}>
+                    <Button variant="secondary" size="lg" onClick={() => addPlanAction()}>
                         Add Traning Plan
                     </Button>
                 </div>
@@ -73,6 +80,11 @@ const TraningPlan = () => {
                 </>
             )}
         </div>
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
+        </div>
+        
     );
 
 } 

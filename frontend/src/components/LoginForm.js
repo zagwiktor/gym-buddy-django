@@ -5,6 +5,7 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from '../context/AuthContext';
+import "../style/Form.css"
 
 const client = axios.create({
   baseURL: "http://127.0.0.1:8000"
@@ -50,7 +51,7 @@ const LoginForm = () => {
 
   if (!currentUser){
     return (
-      <div >
+      <div className="container-form">
         <Form onSubmit={submitLogin}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Username</Form.Label>
@@ -79,7 +80,7 @@ const LoginForm = () => {
              {errorMessage}
           </Form.Text>
           </div>
-          <Button variant="primary" type="submit">
+          <Button variant="secondary" type="submit">
             Submit
           </Button>
         </Form>
@@ -87,13 +88,15 @@ const LoginForm = () => {
     );
   } else {
     return (
-      <div>
+      <div className="container-form" >
         <Form.Text className="text-muted">
              You have already logged in!
         </Form.Text>
-        <Button variant="primary" type="submit" onClick={redirectToHome}>
+        <div style={{ padding: "10px" }}>
+        <Button variant="secondary" type="submit" onClick={redirectToHome} >
             Go to home
         </Button>
+        </div>
       </div>
     );
   }

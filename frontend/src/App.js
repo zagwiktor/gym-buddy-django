@@ -15,6 +15,7 @@ import EditCategory from './components/EditCategory';
 import AddRaport from './components/AddRaport';
 import Raports from './components/Raports';
 import EditRaports from './components/EditRaports';
+import StartPage from './components/StartPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
+            <Route path='' element={<StartPage />}/>
             <Route path='/login' element={<LoginForm />}/>
             <Route path='/register' element={<RegisterForm />}/>
             <Route path='/home' element={<Home />}/>
