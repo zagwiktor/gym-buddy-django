@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
+import "../style/Form.css"
 
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
@@ -55,7 +56,11 @@ const AddExerciseForm = () => {
     return (
         <>
         <Navbar/>
-        <div>
+        <div className="main-container-img-form">
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
+        <div className="container-form">
             <h1>Add Exercise</h1>
             <Form onSubmit={handleAddExercise}>
               <Form.Group className="mb-3" controlId="formBasicTpName">
@@ -118,10 +123,14 @@ const AddExerciseForm = () => {
                     {errorMessage}
                 </Form.Text>
               
-                <Button variant="primary" type="submit" >
+                <Button variant="secondary" type="submit" style={{ marginTop: '15px' }} >
                     Add
                 </Button>
             </Form>
+        </div>
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
         </div>
         </>
     )

@@ -51,55 +51,72 @@ const LoginForm = () => {
 
   if (!currentUser){
     return (
-      <div className="container-form">
-        <Form onSubmit={submitLogin}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="username"
-              placeholder="Enter username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </Form.Group>
-  
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Text className="text-muted">
-             <a href="/register">Do you not have an account? Sign up!</a>
-          </Form.Text>
-          <div>
-          <Form.Text className="text-muted">
-             {errorMessage}
-          </Form.Text>
-          </div>
-          <Button variant="secondary" type="submit">
-            Submit
-          </Button>
-        </Form>
+      <div className="main-container-img-form">
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
+        <div className="container-form">
+          <Form onSubmit={submitLogin}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="username"
+                placeholder="Enter username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </Form.Group>
+      
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Text className="text-muted">
+               <a href="/register">Do you not have an account? Sign up!</a>
+            </Form.Text>
+            <div>
+            <Form.Text className="text-muted">
+               {errorMessage}
+            </Form.Text>
+            </div>
+            <Button variant="secondary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </div>
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
       </div>
     );
   } else {
     return (
-      <div className="container-form" >
-        <Form.Text className="text-muted">
-             You have already logged in!
-        </Form.Text>
-        <div style={{ padding: "10px" }}>
-        <Button variant="secondary" type="submit" onClick={redirectToHome} >
-            Go to home
-        </Button>
+      <div className="main-container-img-form">
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
+        <div className="container-form">
+          <Form.Text className="text-muted">
+               You have already logged in!
+          </Form.Text>
+          <div style={{ padding: "10px" }}>
+          <Button variant="secondary" type="submit" onClick={redirectToHome} >
+              Go to home
+          </Button>
+          </div>
+        </div>
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
         </div>
       </div>
     );
   }
+  
   
 };
 

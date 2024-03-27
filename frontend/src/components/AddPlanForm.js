@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import axios from "axios";
 import Dropdown from 'react-bootstrap/Dropdown';
 import InputGroup from 'react-bootstrap/InputGroup';
+import "../style/Form.css"
 
 
 
@@ -90,7 +91,11 @@ const AddPlanForm = () => {
     
         <>
         <Navbar />
-        <div>
+        <div className="main-container-img-form">
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
+        <div className="container-form">
             <h1>Add traning plan</h1>
             <Form onSubmit={handleAddTraningPlan}>
               <Form.Group className="mb-3" controlId="formBasicTpName">
@@ -150,10 +155,14 @@ const AddPlanForm = () => {
                  {errorMessage}
               </Form.Text>
               
-              <Button variant="primary" type="submit">
+              <Button variant="secondary" type="submit" style={{ marginTop: '15px' }}>
                 Add
               </Button>
             </Form>
+        </div>
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
         </div>
         </>
     )

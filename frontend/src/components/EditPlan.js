@@ -128,7 +128,11 @@ const EditTraningPlan = () => {
     return (
         <>
         <Navbar />
-        <div>
+        <div className="main-container-img-form">
+                <div className="logo-container">
+                <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+                </div>
+                <div className="container-form">
             <h1>Choose traning plan which you want to edit.</h1>
             <Form onSubmit={handleUpdateTraningPlan}>
             <Dropdown data-bs-theme="dark">
@@ -165,9 +169,10 @@ const EditTraningPlan = () => {
                 <div key={index}>
                 {exercise}
                 <Button 
-                    variant="primary" 
+                    variant="dark"
                     onClick={() => deleteFromSelectedExercises(exercise)}
                     onMouseEnter={(e) => e.stopPropagation()}
+                    style={{marginLeft: "15px", marginTop: "5px"}}
                 >
                     ☓
                 </Button>
@@ -205,13 +210,17 @@ const EditTraningPlan = () => {
                  {errorMessage}
               </Form.Text>
               
-              <Button variant="primary" type="submit">
+              <Button variant="secondary" type="submit" style={{marginTop: "15px", marginRight: "10px"}}>
                 Edit
               </Button>
-              <Button variant="primary" onClick={() => deletePlan()}>
+              <Button variant="secondary" onClick={() => deletePlan()} style={{marginTop: "15px"}}>
                 Delete Plan
               </Button>
             </Form>
+        </div>
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
         </div>
         </>
     )

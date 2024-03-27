@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from "axios";
 import Dropdown from 'react-bootstrap/Dropdown';
+import "../style/Form.css"
 
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"

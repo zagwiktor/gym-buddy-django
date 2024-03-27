@@ -119,7 +119,7 @@ const UserNavbar = () => {
                 <Navbar.Text style={{ paddingRight: '15px' }}>
                 Signed in as: {username}
                 </Navbar.Text>
-                <Button type="submit" onClick={logout}>Logout</Button>
+                <Button variant="secondary" type="submit" onClick={logout}>Logout</Button>
             </Navbar.Collapse>
         </Container>
         </Navbar>

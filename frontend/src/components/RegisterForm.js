@@ -46,6 +46,10 @@ const RegisterForm = () => {
     }
 
     return(
+      <div className="main-container-img-form">
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
         <div className="container-form">
         <Form onSubmit={submitRegister}>
           <Form.Group className="mb-3" controlId="formBasicUsername">
@@ -110,6 +114,10 @@ const RegisterForm = () => {
           </Button>
           
         </Form>
+       </div>
+       <div className="logo-container">
+       <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+       </div>
        </div>
     )
 }

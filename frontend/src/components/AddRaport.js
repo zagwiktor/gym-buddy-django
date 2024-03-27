@@ -3,7 +3,7 @@ import Navbar from "../components/UserNavbar"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import axios from "axios"
-
+import "../style/Form.css"
 
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
@@ -43,8 +43,13 @@ const AddRaport = () => {
     return (
         <>
             <Navbar/>
+            
+            <div className="main-container-img-form">
+                <div className="logo-container">
+                <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+                </div>
+                <div className="container-form">
             <h1>Add raport</h1>
-            <div>
             <Form onSubmit={handleAddRaport}>
                 <Form.Group className="mb-3" controlId="formBasicWeight">
                     <Form.Label>Weight</Form.Label>
@@ -112,10 +117,14 @@ const AddRaport = () => {
                 <Form.Text className="text-muted">
                     {errorMessage}
                 </Form.Text>
-                <Button variant="primary" type="submit" >
+                <Button variant="secondary" type="submit" >
                     Add
                 </Button>
             </Form>
+            </div>
+                <div className="logo-container">
+                    <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+                </div>
             </div>
         </>
     )

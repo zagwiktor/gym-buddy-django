@@ -4,6 +4,7 @@ import { useState } from "react"
 import Button from 'react-bootstrap/Button';
 import Navbar from "../components/UserNavbar";
 import Form from 'react-bootstrap/Form';
+import "../style/Form.css"
 
 const client = axios.create({
     baseURL: "http://127.0.0.1:8000"
@@ -30,7 +31,11 @@ const AddCategoryForm = () => {
     return (
         <>
         <Navbar/>
-        <div>
+        <div className="main-container-img-form">
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
+        <div className="container-form">
             <h1>Add Exercise Category</h1>
             <Form onSubmit={handleAddCategory}>
               <Form.Group className="mb-3" controlId="formBasicTpName">
@@ -44,10 +49,14 @@ const AddCategoryForm = () => {
                 </Form.Group>
         
                 
-                <Button variant="primary" type="submit" >
+                <Button variant="secondary" type="submit">
                     Add
                 </Button>
             </Form>
+        </div>
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
         </div>
     </>
     )
