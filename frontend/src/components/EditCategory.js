@@ -65,7 +65,11 @@ const EditCategory = () => {
     return (
         <>
         <Navbar/>
-        <div>
+        <div className="main-container-img-form">
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
+        <div className="container-form">
             <h1>Choose category which you want to edit.</h1>
             <Form onSubmit={handleUpdateCategoires}>
                 <Form.Group className="mb-3" controlId="formBasicTpInfo">
@@ -96,13 +100,17 @@ const EditCategory = () => {
                 <Form.Text className="text-muted">
                     {errorMessage}
                 </Form.Text>
-                <Button variant="primary" type="submit" >
+                <Button variant="secondary" type="submit" style={{marginRight: "12px"}} >
                     Edit
                 </Button>
-                <Button variant="primary" onClick={deleteCategory}>
+                <Button variant="secondary" onClick={deleteCategory}>
                     Delete Category
                 </Button>
             </Form>
+        </div>
+        <div className="logo-container">
+        <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
+        </div>
         </div>
         </>
     )

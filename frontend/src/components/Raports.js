@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import CaloriesChart from "./CaloriesChart";
 import Dropdown from 'react-bootstrap/Dropdown'
+import "../style/Raports.css";
 
 
 const client = axios.create({
@@ -49,7 +50,10 @@ const Raports = () => {
     
     return (
         <>
+            
             <Navbar/>
+            <div className="raports-charts-container">
+            <div className="raport-container">
                 <Dropdown data-bs-theme="dark">
                     <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                         {choosedRaport ? choosedRaport.date : <>Choose raport</>}
@@ -64,7 +68,7 @@ const Raports = () => {
                     </Dropdown.Menu>
                 </Dropdown>
     
-            <div >
+            <div>
                 <h4>Raport</h4>
                 {choosedRaport ? <h1>{choosedRaport.date}</h1> : null}
                 <hr/>
@@ -90,12 +94,17 @@ const Raports = () => {
                 <h2>{calfCircuit}</h2>
                 <hr/>                
             </div>
-        
             {raports  ? (
             <Button variant="primary" onClick={() => {setChartsVisable(!chartsVisable)}}>
                 Generate chart of progress
             </Button>) : (null)}
-            {chartsVisable?<CaloriesChart/>:null}
+            </div>
+        
+            
+            <div className="charts-container">
+            {chartsVisable?<div className="single-chart-container"><CaloriesChart/></div>:null}
+            </div>
+            </div>
             
         </>
         

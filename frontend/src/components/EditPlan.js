@@ -128,6 +128,7 @@ const EditTraningPlan = () => {
     return (
         <>
         <Navbar />
+        
         <div className="main-container-img-form">
                 <div className="logo-container">
                 <img src="/GBlogo.png" alt="GB Logo" className="logo" /> 
