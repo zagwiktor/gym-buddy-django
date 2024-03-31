@@ -20,7 +20,6 @@ const AddRaport = () => {
     const [errorMessage, setErrorMessage] = useState(null)
 
     function handleAddRaport(e) {
-        e.preventDefault();
         client.post('api/raports-create/', {
             author: localStorage.getItem('userId'),
             weight: weight,

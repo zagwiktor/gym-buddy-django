@@ -54,7 +54,7 @@ const Raports = () => {
             <Navbar/>
             <div className="raports-charts-container">
             <div className="raport-container">
-                <Dropdown data-bs-theme="dark">
+                <Dropdown data-bs-theme="dark" style={{marginBottom: "12px"}}>
                     <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                         {choosedRaport ? choosedRaport.date : <>Choose raport</>}
                     </Dropdown.Toggle>
@@ -95,15 +95,20 @@ const Raports = () => {
                 <hr/>                
             </div>
             {raports  ? (
-            <Button variant="primary" onClick={() => {setChartsVisable(!chartsVisable)}}>
-                Generate chart of progress
+            <Button variant="secondary" style={{marginTop: "12px"}} onClick={() => {setChartsVisable(!chartsVisable)}}>
+                {chartsVisable ? ("Hide charts of progress") : ("Show charts of progress" )}
             </Button>) : (null)}
             </div>
-        
+            {chartsVisable ? (
+                <div className="charts-container">
+                {chartsVisable?<div className="single-chart-container"><CaloriesChart/></div>:null}
+                </div>
+            ) : (
+                <div className="logo-container">
+                <img src="/GBlogo.png" alt="GB Logo" className="logo-raports" /> 
+                </div>
+            )}
             
-            <div className="charts-container">
-            {chartsVisable?<div className="single-chart-container"><CaloriesChart/></div>:null}
-            </div>
             </div>
             
         </>

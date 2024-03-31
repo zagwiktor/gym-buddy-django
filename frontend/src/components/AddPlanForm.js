@@ -116,9 +116,10 @@ const AddPlanForm = () => {
                 <div key={index}>
                 {exercise}
                 <Button 
-                    variant="primary" 
                     onClick={() => deleteFromSelectedExercises(exercise)}
                     onMouseEnter={(e) => e.stopPropagation()}
+                    variant="dark" 
+                    style={{marginLeft: "15px", marginTop: "5px"}}
                 >
                     ☓
                 </Button>
