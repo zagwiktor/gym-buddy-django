@@ -22,8 +22,8 @@ from .views import (exercise_detail_view,
                     raports_create_view,
                     raports_detail_view,
                     raports_list_view,
-                    raports_update_view
-                    )
+                    raports_update_view)
+                    
 
 urlpatterns = [
     path('exercise-detail/<int:pk>', exercise_detail_view, name="exercise-detail"),
