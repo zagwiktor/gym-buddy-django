@@ -276,6 +276,8 @@ bower_components
 
 *.sublime*
 
+.vscode/
+
 psd
 thumb
 sketch
