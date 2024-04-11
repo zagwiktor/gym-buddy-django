@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
     def validate(self, data):
-        if len(data["username"]) < 8 and len(data["username"]) >= 8: 
+        if len(data["username"]) < 7 or len(data["username"]) >= 15: 
             raise serializers.ValidationError({'erros': 'Username must contain between 8 and 15 characters.'})
         return data
     

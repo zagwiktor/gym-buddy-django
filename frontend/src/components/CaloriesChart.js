@@ -193,7 +193,6 @@ const CaloriesChart = () => {
               data={chartDataCircuits}
               height={400}
               options={optionsCM}
-        
             />
 
             </div>
