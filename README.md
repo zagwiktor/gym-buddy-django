@@ -71,4 +71,8 @@ npm start # it will react app
 
 
 ## The appearance of GymBuddy
+![image](https://github.com/zagwiktor/gym-buddy-django/assets/92055936/ad77883e-fe19-4aac-8a3b-94f9f0a335cc)
+![image](https://github.com/zagwiktor/gym-buddy-django/assets/92055936/3ae6450b-882e-4767-904a-c63c9d49d2e1)
+
+
 
